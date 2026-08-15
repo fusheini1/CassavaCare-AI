@@ -144,3 +144,7 @@ This is a large improvement over the baseline model (**0.6809 accuracy**; CBB re
 - Add a Content-Security-Policy once the frontend is refactored (currently deferred because the app loads Google Fonts from external domains)
 - Shared rate-limit store (e.g., Redis) for multi-worker deployments
 - Dockerfile for containerized deployment
+
+## License
+
+This project is licensed under the [MIT License](LICENSE) — see the `LICENSE` file for full terms.
