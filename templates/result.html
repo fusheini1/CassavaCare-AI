@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cassava leaf disease diagnosis results — view diagnosis, confidence score, and management advice.">
+    <title>Diagnosis Result — CassavaCare AI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <!-- ============================== -->
+    <!-- HEADER                         -->
+    <!-- ============================== -->
+    <header class="app-header" id="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🌿</span>
+                <h1>CassavaCare <span class="ai-badge">AI</span></h1>
+            </div>
+            <p class="tagline">Diagnosis Result</p>
+        </div>
+    </header>
+
+    <!-- ============================== -->
+    <!-- RESULT CONTENT                 -->
+    <!-- ============================== -->
+    <main class="container" id="main-content">
+        <section class="results-section">
+            <!-- This template is used as a fallback for non-JS browsers -->
+            <!-- The primary flow uses JavaScript (SPA-style) via index.html -->
+            <div class="card result-card {{ severity }}">
+                <div class="result-header">
+                    {% if severity == 'healthy' %}
+                    <div class="result-icon healthy-icon">✅</div>
+                    {% else %}
+                    <div class="result-icon disease-icon">🔴</div>
+                    {% endif %}
+                    <h2 class="result-title">{{ prediction }}</h2>
+                </div>
+
+                <!-- Confidence Score -->
+                <div class="confidence-section">
+                    <div class="confidence-label">Confidence Level</div>
+                    <div class="confidence-bar-container">
+                        <div class="confidence-bar" style="width: {{ confidence }}%">
+                            <span class="confidence-value">{{ confidence }}%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <div class="info-block">
+                    <h3>📋 Description</h3>
+                    <p>{{ description }}</p>
+                </div>
+
+                <!-- Advice -->
+                <div class="info-block advice-block">
+                    <h3>💊 Management Advice</h3>
+                    <p>{{ advice }}</p>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="result-actions">
+                <a href="{{ url_for('index') }}" class="btn-primary" id="new-diagnosis-btn">
+                    <span class="btn-text">📷 New Diagnosis</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================== -->
+    <!-- FOOTER                         -->
+    <!-- ============================== -->
+    <footer class="app-footer" id="app-footer">
+        <div class="footer-content">
+            <p>CassavaCare AI — Capstone Project</p>
+            <p class="disclaimer">⚠️ This tool provides AI-assisted guidance only. Always consult a trained agricultural
+                extension officer for official diagnosis and treatment plans.</p>
+        </div>
+    </footer>
+</body>
+
+</html>

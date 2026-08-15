@@ -1,0 +1,18 @@
+{
+    "_comment": "Class indices are assigned alphabetically by folder name: Cassava_Bacterial_Blight=0, Cassava_Mosaic_Disease=1, Healthy=2",
+    "0": {
+        "name": "Cassava Bacterial Blight (CBB)",
+        "description": "Cassava Bacterial Blight is caused by the bacterium Xanthomonas axonopodis pv. manihotis. Symptoms include angular, water-soaked leaf spots, blighting, wilting, severe defoliation, exudation of gum on stems, and stem dieback.",
+        "advice": "ACTION REQUIRED: 1) Remove and burn all infected plant materials. 2) Use healthy, certified disease-free planting materials for the next season. 3) Practice crop rotation and avoid planting cassava in the same field consecutively. 4) Disinfect farming tools regularly. 5) Plant resistant varieties if available."
+    },
+    "1": {
+        "name": "Cassava Mosaic Disease (CMD)",
+        "description": "Cassava Mosaic Disease is caused by a group of viruses transmitted by whiteflies. Symptoms include prominent yellow or white mosaic patterns on leaves, severe leaf curling, distortion, and stunted overall plant growth.",
+        "advice": "ACTION REQUIRED: 1) Uproot and explicitly burn severely infected plants. 2) Use disease-free stem cuttings from certified nurseries. 3) Control whitefly populations using yellow sticky traps or approved insecticides. 4) Plant CMD-resistant varieties such as CSIR-CRI 'Ampong' or 'Bankye Hemaa' available in Ghana. 5) Practice crop rotation."
+    },
+    "2": {
+        "name": "Healthy",
+        "description": "The cassava leaf appears healthy with no visible signs of bacterial or viral disease.",
+        "advice": "Your cassava plant looks healthy! Continue with regular farming practices: ensure adequate spacing between plants, maintain soil fertility with compost or organic fertilizer, and monitor regularly for any early signs of pest or disease. Water consistently but avoid waterlogging."
+    }
+}

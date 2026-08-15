@@ -1,0 +1,698 @@
+/* =============================================================================
+   CassavaCare AI — Responsive Stylesheet (Mobile-First)
+   =============================================================================
+   Design principles:
+   - Mobile-first (optimized for smartphones on low-bandwidth networks)
+   - High contrast for outdoor use in bright sunlight
+   - Large touch targets for users with low digital literacy
+   - Green = healthy, Red = disease (intuitive color coding)
+   - Clean, minimal design to reduce cognitive load
+   ============================================================================= */
+
+/* ----- CSS Custom Properties (Design Tokens) ----- */
+:root {
+    /* Primary Palette */
+    --color-primary: #16a34a;
+    --color-primary-dark: #15803d;
+    --color-primary-light: #bbf7d0;
+    --color-primary-gradient: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+
+    /* Disease Alert Colors */
+    --color-danger: #dc2626;
+    --color-danger-dark: #b91c1c;
+    --color-danger-light: #fecaca;
+    --color-danger-gradient: linear-gradient(135deg, #dc2626 0%, #ef4444 100%);
+
+    /* Neutral Palette */
+    --color-bg: #f0fdf4;
+    --color-surface: #ffffff;
+    --color-border: #d1d5db;
+    --color-text: #1f2937;
+    --color-text-secondary: #6b7280;
+    --color-text-muted: #9ca3af;
+
+    /* Warning / Info */
+    --color-warning: #f59e0b;
+    --color-info: #3b82f6;
+
+    /* Spacing */
+    --space-xs: 0.25rem;
+    --space-sm: 0.5rem;
+    --space-md: 1rem;
+    --space-lg: 1.5rem;
+    --space-xl: 2rem;
+    --space-2xl: 3rem;
+
+    /* Border Radius */
+    --radius-sm: 0.5rem;
+    --radius-md: 0.75rem;
+    --radius-lg: 1rem;
+    --radius-xl: 1.5rem;
+    --radius-full: 9999px;
+
+    /* Shadows */
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.12);
+    --shadow-glow-green: 0 0 20px rgba(22, 163, 74, 0.3);
+    --shadow-glow-red: 0 0 20px rgba(220, 38, 38, 0.3);
+
+    /* Typography */
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.75rem;
+
+    /* Transitions */
+    --transition-fast: 150ms ease;
+    --transition-base: 250ms ease;
+    --transition-slow: 400ms ease;
+}
+
+
+/* ----- CSS Reset & Base ----- */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* ----- Header ----- */
+.app-header {
+    background: var(--color-primary-gradient);
+    color: white;
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: var(--shadow-md);
+}
+
+.header-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+}
+
+.logo-icon {
+    font-size: var(--font-size-3xl);
+    animation: sway 3s ease-in-out infinite;
+}
+
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+.logo h1 {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.ai-badge {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.25);
+    padding: 0.1em 0.5em;
+    border-radius: var(--radius-sm);
+    font-size: 0.7em;
+    font-weight: 700;
+    vertical-align: middle;
+    backdrop-filter: blur(4px);
+}
+
+.tagline {
+    font-size: var(--font-size-sm);
+    opacity: 0.9;
+    margin-top: var(--space-xs);
+    font-weight: 400;
+}
+
+
+/* ----- Main Container ----- */
+.container {
+    flex: 1;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--space-lg) var(--space-md);
+}
+
+
+/* ----- Card Component ----- */
+.card {
+    background: var(--color-surface);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--color-border);
+    transition: box-shadow var(--transition-base);
+}
+
+.card-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+}
+
+.card-header h2 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    margin-bottom: var(--space-xs);
+    color: var(--color-text);
+}
+
+.card-header p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+
+/* ----- Drop Zone ----- */
+.drop-zone {
+    border: 2px dashed var(--color-primary);
+    border-radius: var(--radius-md);
+    padding: var(--space-2xl) var(--space-md);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--transition-base);
+    background: rgba(22, 163, 74, 0.04);
+    position: relative;
+    overflow: hidden;
+    min-height: 160px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-zone:hover,
+.drop-zone.drag-over {
+    border-color: var(--color-primary-dark);
+    background: rgba(22, 163, 74, 0.08);
+    transform: scale(1.01);
+    box-shadow: var(--shadow-glow-green);
+}
+
+.drop-zone-content {
+    pointer-events: none;
+}
+
+.upload-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+    animation: bounce 2s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+}
+
+.drop-text-primary {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    margin-bottom: var(--space-xs);
+}
+
+.drop-text-secondary {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+.file-hint {
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+}
+
+
+/* ----- Image Preview ----- */
+.image-preview {
+    max-width: 100%;
+    max-height: 280px;
+    border-radius: var(--radius-sm);
+    object-fit: contain;
+    display: block;
+    margin: 0 auto;
+}
+
+
+/* ----- File Info Bar ----- */
+.file-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-primary-light);
+    border-radius: var(--radius-sm);
+    margin-top: var(--space-md);
+    font-size: var(--font-size-sm);
+}
+
+.file-name {
+    font-weight: 500;
+    color: var(--color-primary-dark);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    flex: 1;
+    margin-right: var(--space-sm);
+}
+
+.btn-clear {
+    background: none;
+    border: none;
+    font-size: var(--font-size-lg);
+    color: var(--color-danger);
+    cursor: pointer;
+    padding: var(--space-xs) var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: background var(--transition-fast);
+    line-height: 1;
+}
+
+.btn-clear:hover {
+    background: var(--color-danger-light);
+}
+
+
+/* ----- Primary Button ----- */
+.btn-primary {
+    display: block;
+    width: 100%;
+    padding: var(--space-md) var(--space-lg);
+    margin-top: var(--space-lg);
+    background: var(--color-primary-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-lg);
+    font-weight: 700;
+    font-family: var(--font-family);
+    cursor: pointer;
+    transition: all var(--transition-base);
+    text-align: center;
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    /* Large touch target for accessibility (min 48px) */
+    min-height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.btn-primary:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+
+/* ----- Tips Section ----- */
+.tips-section {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--color-border);
+}
+
+.tips-section h3 {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.tips-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.tips-section li {
+    padding: var(--space-xs) 0;
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    position: relative;
+    padding-left: var(--space-lg);
+}
+
+.tips-section li::before {
+    content: "•";
+    position: absolute;
+    left: var(--space-sm);
+    color: var(--color-primary);
+    font-weight: 700;
+}
+
+
+/* ----- Loading Spinner ----- */
+.loading-section {
+    text-align: center;
+}
+
+.loading-card {
+    text-align: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.spinner-container {
+    margin-bottom: var(--space-lg);
+}
+
+.spinner {
+    width: 56px;
+    height: 56px;
+    border: 5px solid var(--color-primary-light);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    margin: 0 auto;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.loading-card h2 {
+    font-size: var(--font-size-xl);
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.loading-card p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+}
+
+
+/* ----- Results Section ----- */
+.result-card {
+    animation: slideUp 0.5s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Healthy result styling */
+.result-card.healthy {
+    border: 2px solid var(--color-primary);
+    box-shadow: var(--shadow-glow-green);
+}
+
+/* Disease result styling */
+.result-card.disease {
+    border: 2px solid var(--color-danger);
+    box-shadow: var(--shadow-glow-red);
+}
+
+/* Uncertain (low confidence) result styling */
+.result-card.uncertain {
+    border: 2px solid var(--color-warning);
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.3);
+}
+
+.result-header {
+    text-align: center;
+    margin-bottom: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.result-icon {
+    font-size: 3.5rem;
+    margin-bottom: var(--space-sm);
+}
+
+.result-title {
+    font-size: var(--font-size-2xl);
+    font-weight: 800;
+}
+
+.result-card.healthy .result-title {
+    color: var(--color-primary);
+}
+
+.result-card.disease .result-title {
+    color: var(--color-danger);
+}
+
+.result-card.uncertain .result-title {
+    color: var(--color-warning);
+}
+
+
+/* ----- Confidence Bar ----- */
+.confidence-section {
+    margin-bottom: var(--space-lg);
+}
+
+.confidence-label {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.confidence-bar-container {
+    width: 100%;
+    height: 32px;
+    background: #e5e7eb;
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    position: relative;
+}
+
+.confidence-bar {
+    height: 100%;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-right: var(--space-md);
+    min-width: 60px;
+    transition: width 1s ease;
+}
+
+.result-card.healthy .confidence-bar {
+    background: var(--color-primary-gradient);
+}
+
+.result-card.disease .confidence-bar {
+    background: var(--color-danger-gradient);
+}
+
+.result-card.uncertain .confidence-bar {
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.confidence-value {
+    color: white;
+    font-weight: 700;
+    font-size: var(--font-size-sm);
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+
+/* ----- Info Blocks ----- */
+.info-block {
+    margin-bottom: var(--space-lg);
+}
+
+.info-block h3 {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: var(--color-text);
+}
+
+.info-block p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    line-height: 1.7;
+}
+
+.advice-block {
+    background: #fffbeb;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    border-left: 4px solid var(--color-warning);
+}
+
+.result-card.disease .advice-block {
+    background: #fef2f2;
+    border-left-color: var(--color-danger);
+}
+
+
+/* ----- Result Actions ----- */
+.result-actions {
+    margin-top: var(--space-lg);
+}
+
+
+/* ----- Error Section ----- */
+.error-card {
+    text-align: center;
+    border: 2px solid var(--color-danger);
+    animation: fadeIn 0.3s ease;
+}
+
+.error-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+}
+
+.error-card h2 {
+    font-size: var(--font-size-xl);
+    color: var(--color-danger);
+    margin-bottom: var(--space-sm);
+}
+
+.error-card p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+}
+
+
+/* ----- Footer ----- */
+.app-footer {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-lg) var(--space-md);
+    text-align: center;
+    margin-top: auto;
+}
+
+.footer-content p {
+    font-size: var(--font-size-sm);
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-xs);
+}
+
+.disclaimer {
+    font-size: 0.75rem !important;
+    color: var(--color-text-muted) !important;
+    line-height: 1.5;
+}
+
+
+/* ----- Utility Classes ----- */
+.hidden {
+    display: none !important;
+}
+
+
+/* ==========================================
+   RESPONSIVE BREAKPOINTS
+   ========================================== */
+
+/* Tablets (min-width: 480px) */
+@media (min-width: 480px) {
+    .container {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .card {
+        padding: var(--space-xl);
+    }
+}
+
+/* Desktop (min-width: 768px) */
+@media (min-width: 768px) {
+    .app-header {
+        padding: var(--space-lg) var(--space-md);
+    }
+
+    .tagline {
+        font-size: var(--font-size-sm);
+    }
+
+    .drop-zone {
+        padding: var(--space-lg);
+        min-height: 180px;
+    }
+
+    .result-title {
+        font-size: var(--font-size-3xl);
+    }
+}
+
+/* Ensure minimum tap target size on touch devices */
+@media (pointer: coarse) {
+    .btn-primary {
+        min-height: 56px;
+    }
+
+    .btn-clear {
+        min-width: 44px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}

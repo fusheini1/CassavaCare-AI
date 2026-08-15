@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered cassava disease diagnosis tool for smallholder farmers in Ghana. Upload a leaf image to get instant disease detection and management advice.">
+    <title>CassavaCare AI — Leaf Disease Diagnosis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- Google Fonts: Inter for clean, accessible text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- ============================== -->
+    <!-- HEADER                         -->
+    <!-- ============================== -->
+    <header class="app-header" id="app-header">
+        <div class="header-content">
+            <div class="logo">
+                <span class="logo-icon">🌿</span>
+                <h1>CassavaCare <span class="ai-badge">AI</span></h1>
+            </div>
+            <p class="tagline">Instant cassava leaf disease diagnosis powered by Artificial Intelligence</p>
+        </div>
+    </header>
+
+    <!-- ============================== -->
+    <!-- MAIN CONTENT                   -->
+    <!-- ============================== -->
+    <main class="container" id="main-content">
+        <!-- Upload Section -->
+        <section class="upload-section" id="upload-section">
+            <div class="card upload-card">
+                <div class="card-header">
+                    <h2>📷 Upload Leaf Image</h2>
+                    <p>Take a clear photo of the cassava leaf and upload it below</p>
+                </div>
+
+                <!-- Upload Form -->
+                <form id="upload-form" enctype="multipart/form-data">
+                    <!-- Drop Zone for Image Upload -->
+                    <div class="drop-zone" id="drop-zone">
+                        <div class="drop-zone-content" id="drop-zone-content">
+                            <div class="upload-icon">📤</div>
+                            <p class="drop-text-primary">Tap to select a photo</p>
+                            <p class="drop-text-secondary">or drag & drop here</p>
+                            <p class="file-hint">JPG, JPEG, or PNG • Max 5MB</p>
+                        </div>
+                        <!-- Image Preview (shown after selection) -->
+                        <img id="image-preview" class="image-preview hidden" alt="Preview of uploaded cassava leaf">
+                        <input type="file" id="file-input" name="file" accept=".jpg,.jpeg,.png" hidden>
+                    </div>
+
+                    <!-- Selected File Info -->
+                    <div id="file-info" class="file-info hidden">
+                        <span id="file-name" class="file-name"></span>
+                        <button type="button" id="clear-btn" class="btn-clear" title="Remove selected image">✕</button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" id="submit-btn" class="btn-primary" disabled>
+                        <span class="btn-text">🔍 Diagnose Leaf</span>
+                    </button>
+                </form>
+
+                <!-- Tips for best results -->
+                <div class="tips-section">
+                    <h3>💡 Tips for Best Results</h3>
+                    <ul>
+                        <li>Use natural daylight — avoid shadows</li>
+                        <li>Photograph a single leaf flat against a uniform background</li>
+                        <li>Make sure the entire leaf is visible in the frame</li>
+                        <li>Focus on leaves showing symptoms — yellowing, spots, or streaks</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Loading Spinner (shown during prediction) -->
+        <section id="loading-section" class="loading-section hidden">
+            <div class="card loading-card">
+                <div class="spinner-container">
+                    <div class="spinner"></div>
+                </div>
+                <h2>Analyzing your image...</h2>
+                <p>Our AI model is examining the leaf for disease patterns. This may take a few seconds.</p>
+            </div>
+        </section>
+
+        <!-- Results Section (populated by JavaScript) -->
+        <section id="results-section" class="results-section hidden">
+            <!-- Results are injected here by script.js -->
+        </section>
+
+        <!-- Error Section -->
+        <section id="error-section" class="error-section hidden">
+            <div class="card error-card">
+                <div class="error-icon">⚠️</div>
+                <h2>Something went wrong</h2>
+                <p id="error-message"></p>
+                <button type="button" id="retry-btn" class="btn-primary" onclick="resetUpload()">
+                    <span class="btn-text">🔄 Try Again</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================== -->
+    <!-- FOOTER                         -->
+    <!-- ============================== -->
+    <footer class="app-footer" id="app-footer">
+        <div class="footer-content">
+            <p>CassavaCare AI — Fusheini Project</p>
+            <p class="disclaimer">⚠️ This tool provides AI-assisted guidance only. Always consult a trained agricultural extension officer for official diagnosis and treatment plans.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
