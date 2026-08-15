@@ -1,0 +1,126 @@
+============================================================================
+  CassavaCare AI - Model Evaluation Report
+  Generated: 2026-08-15 15:54 by evaluate_model.py
+============================================================================
+
+Validation samples: 47
+Class distribution: {'Cassava Bacterial Blight (CBB)': 10, 'Cassava Mosaic Disease (CMD)': 18, 'Healthy': 19}
+
+Overall accuracy: 0.9574 (45/47)
+
+Classification report (per class):
+                                precision    recall  f1-score   support
+
+Cassava Bacterial Blight (CBB)     0.9000    0.9000    0.9000        10
+  Cassava Mosaic Disease (CMD)     0.9444    0.9444    0.9444        18
+                       Healthy     1.0000    1.0000    1.0000        19
+
+                      accuracy                         0.9574        47
+                     macro avg     0.9481    0.9481    0.9481        47
+                  weighted avg     0.9574    0.9574    0.9574        47
+
+
+Confusion Matrix (rows = ACTUAL, columns = PREDICTED)
+
+                                     [0] Cassava Bacterial Blight (CBB)   [1] Cassava Mosaic Disease (CMD)                        [2] Healthy                              Total
+[0] Cassava Bacterial Blight (CBB)                                    9                                  1                                  0                                 10
+[1] Cassava Mosaic Disease (CMD)                                      1                                 17                                  0                                 18
+[2] Healthy                                                           0                                  0                                 19                                 19
+Total                                                                10                                 18                                 19                                 47
+============================================================================
+
+Pooled dataset: 228 images (train 181 + validation 47)
+Class distribution: {'Cassava Bacterial Blight (CBB)': 49, 'Cassava Mosaic Disease (CMD)': 88, 'Healthy': 91}
+Schedule: 5 epochs per fold (reduced vs. the 50-epoch full training), seeds fixed, class-weighted
+
+Per-fold results (accuracy on held-out fold):
+  Fold 1: accuracy 0.8478 (39/46), recall Cassava Bacterial Blight (CBB) 0.5000 / Cassava Mosaic Disease (CMD) 0.9444 / Healthy 0.9444
+  Fold 2: accuracy 0.8913 (41/46), recall Cassava Bacterial Blight (CBB) 0.6000 / Cassava Mosaic Disease (CMD) 0.9444 / Healthy 1.0000
+  Fold 3: accuracy 0.9130 (42/46), recall Cassava Bacterial Blight (CBB) 0.8000 / Cassava Mosaic Disease (CMD) 0.8824 / Healthy 1.0000
+  Fold 4: accuracy 0.8000 (36/45), recall Cassava Bacterial Blight (CBB) 0.6000 / Cassava Mosaic Disease (CMD) 0.7059 / Healthy 1.0000
+  Fold 5: accuracy 0.9111 (41/45), recall Cassava Bacterial Blight (CBB) 0.7778 / Cassava Mosaic Disease (CMD) 0.9444 / Healthy 0.9444
+
+5-fold CV accuracy: 0.8727 +/- 0.0484 (mean +/- std, ddof=1)
+Mean per-class recall: Cassava Bacterial Blight (CBB) 0.6556, Cassava Mosaic Disease (CMD) 0.8843, Healthy 0.9778
+
+Comparison with single train/validation split (evaluate_model.py): 0.9574 vs. CV mean 0.8727
+
+Interpretation:
+  The single-split validation accuracy (0.9574) is NOTABLY higher than the CV mean (0.8727, difference +0.0847). The 0.9574 figure was optimistic: with only 47 held-out images it did not generalize. The 5-fold CV mean of 0.8727 +/- 0.0484 is the more trustworthy estimate of out-of-sample accuracy.
+
+Caveats: each fold trains for only 5 epochs (vs. up to 50 in the
+full pipeline), so the CV figures are a lower-bound estimate; a
+full-budget retrain per fold would likely score somewhat higher.
+The dataset is small (228 images total), so all figures carry wide
+confidence intervals.
+============================================================================
+  Cross-Validation (5-fold, stratified, random_state=42)
+  Generated: 2026-08-15 18:49 by cross_validate.py
+============================================================================
+
+Pooled dataset: 228 images (train 181 + validation 47)
+Class distribution: {'Cassava Bacterial Blight (CBB)': 49, 'Cassava Mosaic Disease (CMD)': 88, 'Healthy': 91}
+Schedule: 5 epochs per fold (reduced vs. the 50-epoch full training), seeds fixed, class-weighted
+
+Per-fold results (accuracy on held-out fold):
+  Fold 1: accuracy 0.8478 (39/46), recall Cassava Bacterial Blight (CBB) 0.5000 / Cassava Mosaic Disease (CMD) 0.9444 / Healthy 0.9444
+  Fold 2: accuracy 0.8913 (41/46), recall Cassava Bacterial Blight (CBB) 0.6000 / Cassava Mosaic Disease (CMD) 0.9444 / Healthy 1.0000
+  Fold 3: accuracy 0.9130 (42/46), recall Cassava Bacterial Blight (CBB) 0.8000 / Cassava Mosaic Disease (CMD) 0.8824 / Healthy 1.0000
+  Fold 4: accuracy 0.8000 (36/45), recall Cassava Bacterial Blight (CBB) 0.6000 / Cassava Mosaic Disease (CMD) 0.7059 / Healthy 1.0000
+  Fold 5: accuracy 0.9111 (41/45), recall Cassava Bacterial Blight (CBB) 0.7778 / Cassava Mosaic Disease (CMD) 0.9444 / Healthy 0.9444
+
+5-fold CV accuracy: 0.8727 +/- 0.0484 (mean +/- std, ddof=1)
+Mean per-class recall: Cassava Bacterial Blight (CBB) 0.6556, Cassava Mosaic Disease (CMD) 0.8843, Healthy 0.9778
+
+Comparison with single train/validation split (evaluate_model.py): 0.9574 vs. CV mean 0.8727
+
+Interpretation:
+  The single-split validation accuracy (0.9574) is NOTABLY higher than the CV mean (0.8727, difference +0.0847). The 0.9574 figure was optimistic: with only 47 held-out images it did not generalize. The 5-fold CV mean of 0.8727 +/- 0.0484 is the more trustworthy estimate of out-of-sample accuracy.
+
+Caveats: each fold trains for only 5 epochs (vs. up to 50 in the
+full pipeline), so the CV figures are a lower-bound estimate; a
+full-budget retrain per fold would likely score somewhat higher.
+The dataset is small (228 images total), so all figures carry wide
+confidence intervals.
+============================================================================
+  Confidence-Threshold Calibration (pooled 5-fold CV predictions)
+  Generated: 2026-08-15 18:49 by cross_validate.py
+============================================================================
+
+Pooled held-out predictions: 228 (every image evaluated exactly once by the 5 folds)
+Overall held-out accuracy: 0.8728 | Mean predicted confidence: 0.6246
+
+Threshold sweep (samples with confidence >= threshold are answered;
+below are routed to the 'uncertain' state):
+  threshold | rejection_rate | confident_accuracy | confident_count | uncertain_would_be_wrong
+  ----------+----------------+--------------------+-----------------+-------------------------
+  0.50      |         0.2149 |             0.9385 |             179 |                   0.3673
+  0.60      |         0.4693 |             0.9835 |             121 |                   0.2523
+  0.65      |         0.5877 |             0.9894 |              94 |                   0.2090
+  0.70      |         0.6886 |             0.9859 |              71 |                   0.1783
+  0.75      |         0.7939 |             1.0000 |              47 |                   0.1602
+  0.80      |         0.8860 |             1.0000 |              26 |                   0.1436
+  0.90      |         0.9825 |             1.0000 |               4 |                   0.1295
+
+Current threshold (0.65) full breakdown:
+  Samples answered (confident): 94/228 (0.9894 accuracy)
+  Samples rejected (uncertain): 134/228 (0.5877 rejection rate)
+  Per-class recall on confident samples only: Cassava Bacterial Blight (CBB) 0.8000, Cassava Mosaic Disease (CMD) 1.0000, Healthy 1.0000
+  Uncertain-would-be-wrong: 0.2090 (fraction of rejected samples that were misclassified)
+  Rejected-but-correct (cost of uncertainty): 106/134 (79.1%)
+
+Reliability by confidence bin (mean predicted confidence vs.
+observed accuracy):
+  bin       | n  | mean_confidence | observed_accuracy
+  ----------+----+-----------------+------------------
+  0.00-0.50 | 49 |          0.4515 |            0.6327
+  0.50-0.60 | 58 |          0.5564 |            0.8448
+  0.60-0.70 | 50 |          0.6470 |            0.9800
+  0.70-0.80 | 45 |          0.7473 |            0.9778
+  0.80-0.90 | 22 |          0.8349 |            1.0000
+  0.90-1.00 |  4 |          0.9151 |            1.0000
+
+Interpretation:
+  At 0.65, confident predictions are right 0.989 of the time - well ABOVE the claimed confidence. The model is underconfident at this margin; 0.65 could be lowered to answer more cases without sacrificing precision.
+  Caveat: with only 228 held-out samples, these rates carry wide
+  confidence intervals; treat them as directional, not exact.

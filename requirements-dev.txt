@@ -1,0 +1,14 @@
+# =============================================================================
+# CassavaCare AI - Development Dependencies
+# =============================================================================
+# Install with: pip install -r requirements-dev.txt
+# Pulls in the runtime requirements (requirements.txt) plus testing tools.
+# =============================================================================
+
+-r requirements.txt
+
+# Testing
+pytest==9.1.1
+
+# Machine learning utilities (class weighting, evaluation metrics)
+scikit-learn==1.8.0
