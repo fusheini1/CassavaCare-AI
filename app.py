@@ -1,3 +1,5 @@
+# CassavaCare AI
+# Author: Fusheini Abdul-Mumin <abdulmuminfusheini@gmail.com>
 """
 app.py - Flask Application for Cassava Disease Diagnosis
 ==========================================================

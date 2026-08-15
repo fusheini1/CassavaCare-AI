@@ -1,3 +1,4 @@
+/* CassavaCare AI | Author: Fusheini Abdul-Mumin */
 /**
  * script.js - CassavaCare AI Frontend Logic
  * ============================================

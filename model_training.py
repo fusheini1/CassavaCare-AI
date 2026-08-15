@@ -1,3 +1,5 @@
+# CassavaCare AI
+# Author: Fusheini Abdul-Mumin <abdulmuminfusheini@gmail.com>
 """
 model_training.py - Cassava Disease Classification Model Training Script
 ==========================================================================

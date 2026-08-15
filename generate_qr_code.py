@@ -1,3 +1,5 @@
+# CassavaCare AI
+# Author: Fusheini Abdul-Mumin <abdulmuminfusheini@gmail.com>
 import qrcode
 import socket
 import os

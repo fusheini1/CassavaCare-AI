@@ -1,3 +1,5 @@
+# CassavaCare AI
+# Author: Fusheini Abdul-Mumin <abdulmuminfusheini@gmail.com>
 """
 test_predict.py - Tests for the /predict endpoint
 ==================================================

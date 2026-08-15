@@ -1,3 +1,5 @@
+# CassavaCare AI
+# Author: Fusheini Abdul-Mumin <abdulmuminfusheini@gmail.com>
 """
 cross_validate.py - 5-Fold Stratified Cross-Validation + Threshold Calibration
 ==============================================================================

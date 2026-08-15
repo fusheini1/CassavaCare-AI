@@ -1,3 +1,5 @@
+# CassavaCare AI
+# Author: Fusheini Abdul-Mumin <abdulmuminfusheini@gmail.com>
 """
 conftest.py - pytest fixtures for the CassavaCare AI test suite
 ================================================================
