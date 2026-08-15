@@ -6,6 +6,19 @@ Mobile-first web app that classifies cassava leaf disease (Bacterial Blight / Mo
 
 Cassava is a staple crop for millions of smallholder farmers, and leaf diseases like Cassava Bacterial Blight (CBB) and Cassava Mosaic Disease (CMD) can devastate yields if not caught early. CassavaCare AI lets a farmer photograph a leaf with their phone and get an immediate, plain-language diagnosis. The app runs entirely on a local machine — no cloud, no internet required beyond the local network — so it works in field conditions where connectivity is unreliable.
 
+## Demo
+
+### Home page
+| Desktop | Mobile |
+|---------|--------|
+| ![Home page – tablet](assets/home_desktop.png) | ![Home page – mobile](assets/home_mobile.png) |
+
+### Prediction result (confidence-aware)
+![Prediction result on mobile](assets/result_mobile.png)
+
+### Training
+![Training output in CMD](assets/training_cmd.png)
+
 ## Features
 
 - **3-class MobileNetV2 classification** — Cassava Bacterial Blight / Cassava Mosaic Disease / Healthy
@@ -17,7 +30,7 @@ Cassava is a staple crop for millions of smallholder farmers, and leaf diseases 
 
 ## Project structure
 
-```
+```text
 cassava_project/
 ├── app.py                  # Flask app: upload page, /predict JSON API, /health
 ├── model_training.py       # MobileNetV2 transfer learning (seeds + class weights)
@@ -85,6 +98,14 @@ pytest tests/ -m "not slow"         # skip the real-model test (faster)
 ```
 
 The suite covers the `/predict` pipeline: happy path, uncertainty threshold, missing/corrupt/oversized uploads, CSRF header enforcement, JSON error handling, and model-load degradation.
+
+## Model architecture
+
+Fine-tuned **MobileNetV2** with a frozen base and custom dense head, trained on 224×224 RGB leaf images.
+
+![Model architecture summary](assets/model_summary.png)
+
+The MobileNetV2 base (pretrained on ImageNet) is frozen to preserve learned visual features. A small dense head is trained on top for the 3-class cassava classification task. This transfer learning approach works well with the limited dataset (181 training images).
 
 ## Model performance (honest)
 
